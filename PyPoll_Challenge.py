@@ -5,10 +5,15 @@
 import csv
 import os
 
+########VS Code file paths
 # Add a variable to load a file from a path.
 file_to_load = os.path.join("Resources", "election_results.csv")
 # Add a variable to save the file to a path.
 file_to_save = os.path.join("Analysis", "election_analysis.txt")
+
+########Alternative file paths
+#file_to_load = os.path.join("..", "Resources", "election_results.csv")
+#file_to_save = os.path.join("Analysis", "election_analysis.txt")
 
 # Initialize a total vote counter.
 total_votes = 0
@@ -98,8 +103,8 @@ with open(file_to_save, "w") as txt_file:
         percent_iter = float(vote_iter)/float(total_votes) * 100
 
         # 6d: Print the county results to the terminal.
-        county_results = f"{k}: {percent_iter:.1f}% ({vote_iter:,})"
-        print(county_results)
+        county_results = f"{k}: {percent_iter:.1f}% ({vote_iter:,})\n"
+        print(county_results, end="")
         # 6e: Save the county votes to a text file.
         txt_file.write(county_results)
         # 6f: Write an if statement to determine the winning county and get its vote count.
@@ -111,9 +116,9 @@ with open(file_to_save, "w") as txt_file:
     largest_county_message = (
         f"\n-------------------------\n"
         f"Largest County Turnout: {largest_county} ({largest_county_votes:,})\n"
-        f"-------------------------")
+        f"-------------------------\n")
 
-    print(largest_county_message)
+    print(largest_county_message, end="")
     # 8: Save the county with the largest turnout to a text file.
     txt_file.write(largest_county_message)
 
@@ -124,11 +129,11 @@ with open(file_to_save, "w") as txt_file:
         votes = candidate_votes.get(candidate_name)
         vote_percentage = float(votes) / float(total_votes) * 100
         candidate_results = (
-            f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})")
+            f"{candidate_name}: {vote_percentage:.1f}% ({votes:,})\n")
 
         # Print each candidate's voter count and percentage to the
         # terminal.
-        print(candidate_results)
+        print(candidate_results, end="")
         #  Save the candidate results to our text file.
         txt_file.write(candidate_results)
 
