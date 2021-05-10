@@ -15,6 +15,8 @@ The Colorado Board of Elections has requested an audit of a congressional electi
  - Data Source: election_results.csv
  - Software: Python 3.7.6, Visual Studio Code 1.56
 
+(NOTE: Because Visual Studio has non-standard defaults for setting the current working directory,           I have included two sets of file paths in lines 8-16 of my code. The first set works when running the code is Visual Studio under its default settings, but the second (commented-out) set of paths may need to be activated when running the code in a different environment. Doing so merely requires that lines 10 and 11 be commented out, and lines 15 and 16 be un-commented.)
+
 ## Results
 The election audit shows that the following:
   1. 369,711 votes were cast.
@@ -40,4 +42,13 @@ In the code, the folder containing our data (sitting in the same directory as ou
 
 and the script will run without issue.
 
-This program can also be run for elections with different categories (e.g., with 
+This program can also be run for elections with differently defined regions (e.g., with voting precints or electoral districts instead of counties) without any technical changes, though it would make the most sense to at least change the output formatting to reflect the type of region used. For example, one would want to change the output variable in lines 116-119,
+
+```
+largest_county_message = (
+        f"\n-------------------------\n"
+        f"Largest County Turnout: {largest_county} ({largest_county_votes:,})\n"
+        f"-------------------------\n") 
+```
+       
+such that it reads, for example, ```Largest Precint Turnout``` instead of ```Largest County Turnout```. Additionally, many of the variable names throughout the script make reference to "county" (e.g., ```largest_county_message```, ```largest_county```, etc.). These need not be altered for the program to work with different regions, but a careful editor could alter them throughout to make the code easier to understand for a human reader.
